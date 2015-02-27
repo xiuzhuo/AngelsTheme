@@ -1,14 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <style name="Theme.Angel.Base" parent="android:Theme.Material.Light.DarkActionBar">
+
+    </style>
+
     <!-- inherit from the material theme -->
-    <style name="Theme.Red" parent="android:Theme.Material">
+    <style name="Theme.Angel.Red" parent="Theme.Angel.Base">
         <!-- Main theme colors -->
         <!--   your app branding color for the app bar -->
-        <item name="android:colorPrimary">@color/primary</item>
+        <item name="android:colorPrimary">@color/red_500</item>
         <!--   darker variant for the status bar and contextual app bars -->
-        <item name="android:colorPrimaryDark">@color/primary_dark</item>
+        <item name="android:colorPrimaryDark">@color/red_900</item>
         <!--   theme UI controls like checkboxes and text fields -->
-        <item name="android:colorAccent">@color/accent</item>
+        <item name="android:colorAccent">@color/indigo_500</item>
+        <item name="android:navigationBarColor">@color/red_900</item>
+    </style>
+
+    <style name="Theme.Angel.Blue" parent="Theme.Angel.Base">
+        <item name="android:colorPrimary">@color/blue_500</item>
+        <item name="android:colorPrimaryDark">@color/blue_900</item>
+        <item name="android:colorAccent">@color/red_500</item>
+        <item name="android:navigationBarColor">@color/blue_900</item>
+    </style>
+
+
+    <style name="Theme.Angel.Green" parent="Theme.Angel.Base">
+        <item name="android:colorPrimary">@color/green_500</item>
+        <item name="android:colorPrimaryDark">@color/green_900</item>
+        <item name="android:colorAccent">@color/orange_500</item>
+        <item name="android:navigationBarColor">@color/green_900</item>
     </style>
 
 </resources>
