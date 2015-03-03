@@ -1,2 +1,2 @@
 # AngelsTheme
-Project Library for Material Theme.
+Project Library of Theme for Material Design.
