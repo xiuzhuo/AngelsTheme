@@ -17,6 +17,13 @@
         <item name="android:navigationBarColor">@color/red_900</item>
     </style>
 
+    <style name="Theme.Angel.Purple" parent="Theme.Angel.Base">
+        <item name="android:colorPrimary">@color/purple_500</item>
+        <item name="android:colorPrimaryDark">@color/purple_900</item>
+        <item name="android:colorAccent">@color/purple_500</item>
+        <item name="android:navigationBarColor">@color/purple_900</item>
+    </style>
+
     <style name="Theme.Angel.Blue" parent="Theme.Angel.Base">
         <item name="android:colorPrimary">@color/blue_500</item>
         <item name="android:colorPrimaryDark">@color/blue_900</item>

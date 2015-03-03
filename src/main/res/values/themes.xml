@@ -1,7 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.Angel.Red" parent="@android:style/Theme.Holo.Light.DarkActionBar">
 
-    </style>
+        <style name="Theme.Angel.Base" parent="@android:style/Theme.Holo.Light.DarkActionBar">
+
+        </style>
+
+        <!-- inherit from the material theme -->
+        <style name="Theme.Angel.Red" parent="Theme.Angel.Base">
+            <!-- Main theme colors -->
+
+        </style>
+
+        <style name="Theme.Angel.Purple" parent="Theme.Angel.Base">
+
+        </style>
+
+        <style name="Theme.Angel.Blue" parent="Theme.Angel.Base">
+
+        </style>
+
+
+        <style name="Theme.Angel.Green" parent="Theme.Angel.Base">
+
+        </style>
+
 </resources>
