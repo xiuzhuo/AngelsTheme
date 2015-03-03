@@ -2,13 +2,16 @@ package angel.zhuoxiu.theme;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class ThemeActivity extends Activity implements ThemeInterface {
+public abstract class ThemeActivity extends Activity implements ThemeInterface {
+
+    static final String DEFAULT_THEME_RES_ID = "default_theme_res_id";
     String tag = this.getClass().getSimpleName();
     ThemeManager themeManager;
     ThemeWrapper[] themes = new ThemeWrapper[0];
@@ -17,7 +20,7 @@ public class ThemeActivity extends Activity implements ThemeInterface {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_demo);
+        setTheme(getDefaultTheme());
         themes = ThemeManager.getInstance(this, getPrefix()).getThemes();
         for (ThemeWrapper theme : themes) {
             Log.i(tag, theme.toString());
@@ -44,32 +47,22 @@ public class ThemeActivity extends Activity implements ThemeInterface {
 
         switch (itemId) {
             default:
-                setTheme(itemId);
-                startActivityForResult(new Intent(this, this.getClass()), 100);
+                if (itemId != getDefaultTheme()) {
+                    setDefaultTheme(itemId);
+                    restartForThemeChange();
+                }
                 break;
         }
         return super.onOptionsItemSelected(item);
     }
 
     @Override
-    public void setTheme(int resId) {
-        super.setTheme(resId);
-        if (getApplication() instanceof ThemeApplication) {
-            ((ThemeApplication) getApplication()).setTheme(resId);
-            ((ThemeApplication) getApplication()).setDefaultTheme(resId);
-        }
-    }
-
-    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        restart();
+        restartForThemeChange();
     }
 
-    public void restart() {
-        finish();
-        startActivity(getIntent());
-    }
+    public abstract void restartForThemeChange();
 
     @Override
     public void saveStatus() {
@@ -82,7 +75,17 @@ public class ThemeActivity extends Activity implements ThemeInterface {
     }
 
     @Override
-    public String getPrefix() {
-        return "Theme_Angel";
+    public abstract String getPrefix();
+
+    boolean setDefaultTheme(int resId) {
+        return getGlobalSharedPreferences().edit().putInt(DEFAULT_THEME_RES_ID, resId).commit();
+    }
+
+    int getDefaultTheme() {
+        return getGlobalSharedPreferences().getInt(DEFAULT_THEME_RES_ID, getApplicationInfo().theme);
+    }
+
+    SharedPreferences getGlobalSharedPreferences() {
+        return getSharedPreferences(getPackageName(), MODE_PRIVATE);
     }
 }
